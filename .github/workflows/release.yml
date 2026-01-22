@@ -1,0 +1,140 @@
+name: Deploy Releases
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Set VERSION from tag or commit
+        run: |
+          git fetch --tags
+          VERSION=$(git describe --tags --always --dirty=-dev)
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "Using build version: $VERSION"
+
+      - name: Build English manual
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: DR_DRNext_User_Manual_mk1_mk2.tex
+          texlive_version: latest
+          extra_system_packages: coreutils icu inkscape
+
+      - name: Build German manual
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: DR_DRNext_User_Manual_mk1_mk2_de.tex
+          texlive_version: latest
+          extra_system_packages: coreutils icu inkscape
+
+      - name: Build Spanish manual
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: DR_DRNext_User_Manual_mk1_mk2_es.tex
+          texlive_version: latest
+          extra_system_packages: coreutils icu inkscape
+
+      - name: Build French manual
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: DR_DRNext_User_Manual_mk1_mk2_fr.tex
+          texlive_version: latest
+          extra_system_packages: coreutils icu inkscape
+
+      - name: Build Hungarian manual
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: DR_DRNext_User_Manual_mk1_mk2_hu.tex
+          texlive_version: latest
+          extra_system_packages: coreutils icu inkscape
+
+      - name: Build Russian manual
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: DR_DRNext_User_Manual_mk1_mk2_ru.tex
+          texlive_version: latest
+          extra_system_packages: coreutils icu inkscape
+
+      - name: Create GitHub Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ env.VERSION }}
+          body: |
+            Automated release for `${{ env.VERSION }}` including all available languages.
+          draft: false
+          prerelease: false
+
+      - name: Upload English PDF to Release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./DR_DRNext_User_Manual_mk1_mk2.pdf
+          asset_name: DR_DRNext_User_Manual_mk1_mk2.pdf
+          asset_content_type: application/pdf
+
+      - name: Upload German PDF to Release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./DR_DRNext_User_Manual_mk1_mk2_de.pdf
+          asset_name: DR_DRNext_User_Manual_mk1_mk2_de.pdf
+          asset_content_type: application/pdf
+
+      - name: Upload Spanish PDF to Release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./DR_DRNext_User_Manual_mk1_mk2_es.pdf
+          asset_name: DR_DRNext_User_Manual_mk1_mk2_es.pdf
+          asset_content_type: application/pdf
+
+      - name: Upload French PDF to Release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./DR_DRNext_User_Manual_mk1_mk2_fr.pdf
+          asset_name: DR_DRNext_User_Manual_mk1_mk2_fr.pdf
+          asset_content_type: application/pdf
+
+      - name: Upload Hungarian PDF to Release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./DR_DRNext_User_Manual_mk1_mk2_hu.pdf
+          asset_name: DR_DRNext_User_Manual_mk1_mk2_hu.pdf
+          asset_content_type: application/pdf
+
+      - name: Upload Russian PDF to Release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./DR_DRNext_User_Manual_mk1_mk2_ru.pdf
+          asset_name: DR_DRNext_User_Manual_mk1_mk2_ru.pdf
+          asset_content_type: application/pdf
