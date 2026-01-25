@@ -35,3 +35,30 @@ This guide captures the dual-connector pin assignments used by Replica Gen One d
 | 11 | Hall sensor input for optional speed sensors. |
 | 12 | MFA block selection line. |
 | 13 | MFA reset line. |
+
+## CE2 cluster pinout
+
+| Cluster Pin | Function | Color (A2) |
+| --- | --- | --- |
+| T28/01 | Outside Air Temperature Sensor Ground | Blue/White |
+| T28/02 | Coolant Level Low (1990+ only) | Violet (1989) or Red/White |
+| T28/03 | Ground | Brown |
+| T28/04 | MFA Switch- Reset | Gray |
+| T28/05 | MFA Switch Ground, Ground for Sensors | Brown/White |
+| T28/06 | MFA Switch- Function | Green/White |
+| T28/07 | Speed Sensor Output | Violet |
+| T28/08 | High Oil Pressure Signal | Yellow |
+| T28/09 | Low Oil pressure Signal | Red/White |
+| T28/10 | Tachometer | Green |
+| T28/11 | MFA/Clock Constant Power | Red |
+| T28/12 | Dash Lights | Gray |
+| T28/13 | Start/Run Power, Fuse 16 | Black |
+| T28/15 | MFA Switch- Mode | Black |
+| T28/16 | Battery Light | Blue |
+| T28/17 | Engine Oil Temperature | Black/White |
+| T28/19 | Outside Air Temperature Sensor | Violet |
+| T28/20 | Glow Plug Indicator | Green/White |
+| T28/21 | Fuel Level | Blue |
+| T28/23 | Coolant Temperature Sensor | Yellow/Red |
+| T28/24 | Turn Signal Light | Green |
+| T28/25 | High Beam Indicator Light | Blue/White |
