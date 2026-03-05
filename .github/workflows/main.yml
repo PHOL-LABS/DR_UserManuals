@@ -1,53 +1,64 @@
-name: Build PDFs from root Markdown files
+name: CI
 
 on:
   push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
   workflow_dispatch:
 
 jobs:
-  md_to_pdfs:
-    runs-on: ubuntu-24.04
-
+  ## workflow inspiration from exaexa's better-mff automation and the CUNI validation container
+  build:
+    name: Build PDF and upload as an artifact
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Prepare output directory
-        run: |
-          rm -rf output
-          mkdir -p output
-
-      - name: Convert each root Markdown to PDF (pandoc/latex docker)
-        run: |
-          set -eu
-
-          files="$(find . -maxdepth 1 -type f -name "*.md" -printf "%f\n" | grep -vi "^README\.md$" || true)"
-          if [ -z "$files" ]; then
-            echo "No root Markdown files (*.md) found (excluding README.md)."
-            exit 0
-          fi
-
-          echo "Markdown files to convert:"
-          echo "$files"
-
-          docker run --rm \
-            --entrypoint /bin/sh \
-            -v "$PWD:/data" \
-            -w /data \
-            pandoc/latex:3.5 \
-            -lc '
-              set -eu
-              mkdir -p output
-              files="$(find . -maxdepth 1 -type f -name "*.md" -printf "%f\n" | grep -vi "^README\.md$" || true)"
-              for f in $files; do
-                base="${f%.md}"
-                out="output/${base}.pdf"
-                echo "Converting $f -> $out"
-                pandoc "$f" --pdf-engine=xelatex --output="$out"
-              done
-            '
-
-      - name: Upload PDFs as artifact
+      - name: Set up Git repository
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: DR_DRNext_User_Manual_mk1_mk2.tex
+          texlive_version: latest # must be `2024` or later (`latest` chosen by default)
+          extra_system_packages: coreutils icu inkscape # `coreutils` for `mktemp`, `icu` for `uconv`
+      - name: Upload the artifact
         uses: actions/upload-artifact@v4
         with:
-          name: root_markdown_pdfs
-          path: output
+          name: DR_DRNext_User_Manual_mk1_mk2
+          path: |
+            README.md
+            DR_DRNext_User_Manual_mk1_mk2.pdf
+  verify:
+    name: Verify PDF/A
+    runs-on: ubuntu-latest
+    needs: build
+    container: { image: ghcr.io/jdujava/cuni-thesis-validator }
+    steps:
+      - name: Get the PDF file from the artifact
+        uses: actions/download-artifact@v4
+      - name: Verify the PDF file with VeraPDF
+        run: verify DR_DRNext_User_Manual_mk1_mk2/*.pdf | tee /dev/stderr | grep -qE 'nonCompliant="0" failedJobs="0"'
+
+  ## inspired by https://github.com/Pseudomanifold/latex-mimosis
+  deploy:
+    name: Deploy latest build of PDF and README.md to gh-pages branch
+    if: github.event_name == 'push' # only deploy on push
+    runs-on: ubuntu-latest
+    needs: build
+    permissions:
+      contents: write
+    steps:
+      - name: Get the PDF and README.md from the artifact
+        uses: actions/download-artifact@v4
+      - name: Commit and push the PDF and README.md to `gh-pages` branch
+        run: |
+          cd DR_DRNext_User_Manual_mk1_mk2
+          git init -b temp
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git remote add origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
+          git add .
+          git commit -m "[CI] Update to latest PDF and README.md"
+          git push --force origin temp:gh-pages
