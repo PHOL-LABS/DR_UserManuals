@@ -49,6 +49,7 @@ M.S. & Önszerelő készlet egy csatlakozóval. \\
 NEXT-GART & \ReplicaNextLong{}, 8000~RPM skála, két csatlakozó, elektronikus sebességjeladó. \\
 NEXT-GARS & \ReplicaNextLong{}, 8000~RPM skála, egy csatlakozó, elektronikus sebességjeladó. \\
 NEXT-MT & \ReplicaNextLong{} önszerelő készlet két csatlakozóval. \\
+REFIZ & ReFIZ alaplap gyári Volkswagen Digifiz kijelzőegységekhez; kiváltja a gyári alaplapot, és kompatibilis marad a Digifiz Next architektúrával. \\
 NEXT-MS & \ReplicaNextLong{} önszerelő készlet egy csatlakozóval. \\
 \end{tblr}}
 
@@ -230,6 +231,89 @@ gyári Volkswagen Digifiz Mk3 rajzát követi, így közvetlenül a biztosíték
 Az \textsuperscript{$\dagger$} jellel jelölt ágak a 28 pólusú házból a készlethez adott JST elosztókon lépnek ki. Ezek sodort
 párokat biztosítanak a külső és olajhőmérséklet érzékelőkhöz, valamint közvetlen hozzáférést az \textsc{MFA} gombokhoz és a
 fogyasztásjelhez.
+
+\subsection{A ReFIZ alaplap lábkiosztása}
+A ReFIZ cserealaplap eredeti Volkswagen Digifiz kijelzőegységekhez. A Digifiz Next architektúrát követi, ezért a webes kezelőfelület és minden egyéb konfigurációs funkció megegyezik a \ReplicaNextShort{} megoldással. A gyári alaplap kiszerelhető és ReFIZ-re cserélhető. A színmódosítás négy LED-helyre és a visszajelzők sorára korlátozódik. A fogyasztásjeladó alapértelmezetten csatlakoztatva van, a fényerő egy további analóg bemeneten kézzel is vezérelhető, a járműjelek pedig a fő készülékcsatlakozón érhetők el. Opcionális CE~2 csatlakozó is rendelkezésre áll, ahogy a többi Digifiz Next kábelkötegnél szerepel.
+
+\noindent\textbf{W csatlakozó -- L oldal (WL)}
+
+{\scriptsize
+\begin{tblr}{
+    colspec={Q[l,1.5cm] Q[l,3.5cm] X[l]},
+    hlines,
+    row{1} = {font=\bfseries},
+}
+Láb & Funkció & Leírás \\
+WL7 & Sebességmérő bemenet & Sebességmérő jel a jeladótól. \\
+WL6 & MFA nullázás & Nullázza az MFA fedélzeti számítógép értékeit. \\
+WL5 & Óra -- percbeállítás & A műszerfalóra percállító bemenete, 12~V szint. \\
+WL4 & 31-es kapocs (test) & Karosszéria-test csatlakozás. \\
+WL3 & Kézifék visszajelző & Aktiválja a rögzítőfék figyelmeztető jelzését. \\
+WL2 & Bal irányjelző & A bal irányjelző visszajelző lámpáját vezérli. \\
+WL1 & Hátsó ablakfűtés & A hátsó páramentesítő működését jelzi. \\
+\end{tblr}}
+
+\noindent\textbf{W csatlakozó -- K oldal (WK)}
+
+{\scriptsize
+\begin{tblr}{
+    colspec={Q[l,1.5cm] Q[l,3.5cm] X[l]},
+    hlines,
+    row{1} = {font=\bfseries},
+}
+Láb & Funkció & Leírás \\
+WK7 & KL1 fordulatszámjel & Jel a gyújtótekercs vagy elosztó egységből. \\
+WK6 & Óra -- órabeállítás & A műszerfalóra óraállító bemenete, 12~V szint. \\
+WK5 & MFA mód & Kapcsolóbemenet az MFA módok váltásához. \\
+WK4 & 61-es kapocs & Generátor töltésjel (akkumulátor visszajelző) és gerjesztés. \\
+WK3 & Jobb irányjelző & A jobb irányjelző visszajelző lámpáját vezérli. \\
+WK2 & Távolsági fény visszajelző & A távolsági fény figyelmeztető lámpáját vezérli. \\
+WK1 & Hátsó ködlámpa & Jelzi a hátsó ködlámpák bekapcsolását. \\
+\end{tblr}}
+
+\noindent\textbf{S csatlakozó -- L oldal (SL)}
+
+{\scriptsize
+\begin{tblr}{
+    colspec={Q[l,1.5cm] Q[l,3.5cm] X[l]},
+    hlines,
+    row{1} = {font=\bfseries},
+}
+Láb & Funkció & Leírás \\
+SL9 & 58-as kapocs & Műszervilágítás tápja a világításkapcsolótól. \\
+SL8 & MFA blokk kapcsoló & Bemenet az MFA blokk választókapcsolótól (kormánykapcsoló). \\
+SL7 & 15-ös kapocs & Gyújtáskapcsolt +12~V táp. \\
+SL6 & 58b kapocs & Műszerfal-világítás fényerőszabályzó bemenet. \\
+SL5 & Olajnyomás kapcsoló (1,8~bar) & Magasnyomású olajkapcsoló bemenet. \\
+SL4 & N/C; nincs a PCB-re vezetve (non-Rabbit) & Ismeretlen. \\
+SL3 & N/C; nincs a PCB-re vezetve (non-Rabbit) & Ismeretlen. \\
+SL2 & Olajhőmérséklet jeladó & Olajhőmérő/MFA érzékelőbemenet. \\
+SL1 & Üzemanyagszint jeladó & Tank szintjeladó bemenet. \\
+\end{tblr}}
+
+\noindent\textbf{S csatlakozó -- K oldal (SK)}
+
+{\scriptsize
+\begin{tblr}{
+    colspec={Q[l,1.5cm] Q[l,3.5cm] X[l]},
+    hlines,
+    row{1} = {font=\bfseries},
+}
+Láb & Funkció & Leírás \\
+SK9 & 58-as kapocs & Világítás visszajelző. \\
+SK8 & Hűtőfolyadék szintérzékelő & Alacsony hűtőfolyadékszint jel. \\
+SK7 & Ismeretlen +12~V jelbemenet & Ismeretlen; egyes források szerint változó olajnyomás-jeladó kimenet. \\
+SK6 & Nincs bekötve/ismeretlen & A non-Rabbit változatban nincs a PCB-re vezetve. \\
+SK5 & 31-es kapocs (test) az MFA-hoz & MFA testcsatlakozás; kötelező a hibás működés elkerüléséhez. \\
+SK4 & 30-as kapocs, állandó táp & Állandó akkumulátor +12~V táp. \\
+SK3 & Olajnyomás kapcsoló (0,3~bar) & Alacsony olajnyomás figyelmeztető bemenet. \\
+SK2 & Hűtőfolyadék hőmérséklet jeladó & Motor hűtőfolyadék-hőmérséklet bemenet. \\
+SK1 & Külső hőmérséklet jeladó & Az MFA által használt környezeti hőmérséklet érzékelő. \\
+\end{tblr}}
+
+Az eredeti csatlakozók nehezen beszerezhetők; nyomtatható aljzatmodell itt érhető el:
+\displayurl{https://cults3d.com/en/3d-model/gadget/vw-golf-2-jetta-2-digifiz-sockets-for-the-harness-amp-926505-993709100}
+
 
 \subsection{Nyomtatott áramköri lap szervizcsatlakozója}
 Az áramköri lapon található harmadik csatlakozó tükrözi a műszerfal csatlakozóit; a lábak számozása \ReplicaGenOneShort{} és \ReplicaNextShort{} egységeken jobbról balra halad. Szerviz interfészt biztosít a \autoref{tab:service-connector} táblázat szerinti kiosztással.

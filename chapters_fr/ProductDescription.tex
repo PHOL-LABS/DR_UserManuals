@@ -52,6 +52,7 @@ M.S. & Kit en auto-assemblage avec un connecteur unique. \\
 NEXT-GART & \ReplicaNextLong{}, échelle 8000~tr/min, deux connecteurs, capteur de vitesse électronique. \\
 NEXT-GARS & \ReplicaNextLong{}, échelle 8000~tr/min, connecteur unique, capteur de vitesse électronique. \\
 NEXT-MT & Kit \ReplicaNextLong{} en auto-assemblage avec deux connecteurs. \\
+REFIZ & Carte mère ReFIZ pour unités d'écran Volkswagen Digifiz OEM; remplace la carte mère d'origine et reste compatible avec l'architecture Digifiz Next. \\
 NEXT-MS & Kit \ReplicaNextLong{} en auto-assemblage avec un connecteur unique. \\
 \end{tblr}}
 
@@ -235,6 +236,89 @@ de fusibles ou aux adaptateurs du véhicule (voir \autoref{tab:mk3-pinout-fr}).
 Les conducteurs marqués d'un \textsuperscript{$\dagger$} quittent le connecteur 28~broches via les dérivations JST
 auxiliaires fournies avec le kit Mk3. Ils offrent des paires torsadées pour les thermistances d'air extérieur et d'huile ainsi
 qu'un accès direct aux boutons \textsc{MFA} et au signal de consommation.
+
+\subsection{Brochage de la carte mère ReFIZ}
+ReFIZ est une carte mère de remplacement pour les unités d'écran Volkswagen Digifiz d'origine. Elle suit l'architecture Digifiz Next; le tableau de bord web et toutes les autres fonctions de configuration sont donc identiques à \ReplicaNextShort{}. La carte mère OEM peut être déposée et remplacée par ReFIZ. La modification des couleurs est limitée à quatre emplacements de LED plus la ligne des témoins. Le capteur de consommation est connecté par défaut, la luminosité peut aussi être commandée manuellement via une entrée analogique supplémentaire, et les signaux du véhicule arrivent sur le connecteur principal de l'appareil. Un connecteur CE~2 optionnel est disponible comme indiqué pour les autres faisceaux Digifiz Next.
+
+\noindent\textbf{Connecteur W -- côté L (WL)}
+
+{\scriptsize
+\begin{tblr}{
+    colspec={Q[l,1.5cm] Q[l,3.5cm] X[l]},
+    hlines,
+    row{1} = {font=\bfseries},
+}
+Broche & Fonction & Description \\
+WL7 & Entrée du compteur de vitesse & Entrée du compteur depuis le capteur. \\
+WL6 & Remise à zéro MFA & Réinitialise les valeurs du calculateur de trajet MFA. \\
+WL5 & Horloge -- réglage des minutes & Entrée de réglage des minutes, niveau 12~V. \\
+WL4 & Borne~31 (masse) & Connexion à la masse du châssis. \\
+WL3 & Témoin de frein à main & Active le témoin de frein de stationnement. \\
+WL2 & Clignotant gauche & Commande le témoin de clignotant gauche. \\
+WL1 & Dégivrage arrière & Indique le fonctionnement du dégivrage arrière. \\
+\end{tblr}}
+
+\noindent\textbf{Connecteur W -- côté K (WK)}
+
+{\scriptsize
+\begin{tblr}{
+    colspec={Q[l,1.5cm] Q[l,3.5cm] X[l]},
+    hlines,
+    row{1} = {font=\bfseries},
+}
+Broche & Fonction & Description \\
+WK7 & Signal régime KL1 & Signal provenant de la bobine ou du distributeur. \\
+WK6 & Horloge -- réglage des heures & Entrée de réglage des heures, niveau 12~V. \\
+WK5 & Mode MFA & Entrée de sélection des modes MFA. \\
+WK4 & Borne~61 & Signal de charge de l’alternateur (témoin batterie) et excitation du générateur. \\
+WK3 & Clignotant droit & Commande le témoin de clignotant droit. \\
+WK2 & Témoin de plein phare & Commande le témoin de feux de route. \\
+WK1 & Feu antibrouillard arrière & Indique que les feux antibrouillard arrière sont allumés. \\
+\end{tblr}}
+
+\noindent\textbf{Connecteur S -- côté L (SL)}
+
+{\scriptsize
+\begin{tblr}{
+    colspec={Q[l,1.5cm] Q[l,3.5cm] X[l]},
+    hlines,
+    row{1} = {font=\bfseries},
+}
+Broche & Fonction & Description \\
+SL9 & Borne~58 & Alimentation d’éclairage des instruments depuis le commutateur d’éclairage. \\
+SL8 & Sélecteur de bloc MFA & Entrée du sélecteur de bloc MFA (commodo). \\
+SL7 & Borne~15 & Alimentation +12~V après contact. \\
+SL6 & Borne~58b & Entrée de variateur d’éclairage du tableau de bord. \\
+SL5 & Contacteur de pression d’huile (1,8~bar) & Entrée du contacteur haute pression d’huile. \\
+SL4 & N/C; non routé sur le PCB (non-Rabbit) & Inconnu. \\
+SL3 & N/C; non routé sur le PCB (non-Rabbit) & Inconnu. \\
+SL2 & Sonde de température d’huile & Entrée pour indicateur de température d’huile/MFA. \\
+SL1 & Sonde de niveau de carburant & Entrée du capteur de niveau du réservoir. \\
+\end{tblr}}
+
+\noindent\textbf{Connecteur S -- côté K (SK)}
+
+{\scriptsize
+\begin{tblr}{
+    colspec={Q[l,1.5cm] Q[l,3.5cm] X[l]},
+    hlines,
+    row{1} = {font=\bfseries},
+}
+Broche & Fonction & Description \\
+SK9 & Borne~58 & Indicateur d’éclairage. \\
+SK8 & Capteur de niveau de liquide de refroidissement & Signal de niveau bas de liquide de refroidissement. \\
+SK7 & Entrée de signal +12~V inconnue & Inconnue; certaines sources l’identifient comme sortie variable du capteur de pression d’huile. \\
+SK6 & Non connecté/inconnu & Non routé sur le PCB dans la version non-Rabbit. \\
+SK5 & Borne~31 (masse) pour MFA & Masse MFA; obligatoire pour éviter les dysfonctionnements. \\
+SK4 & Borne~30, alimentation permanente & Alimentation batterie permanente +12~V. \\
+SK3 & Contacteur de pression d’huile (0,3~bar) & Entrée d’alerte basse pression d’huile. \\
+SK2 & Sonde de température de liquide de refroidissement & Entrée du capteur de température moteur. \\
+SK1 & Sonde de température extérieure & Capteur de température ambiante utilisé par MFA. \\
+\end{tblr}}
+
+Les connecteurs d'origine sont difficiles à trouver; un modèle de prise imprimable est disponible à cette adresse:
+\displayurl{https://cults3d.com/en/3d-model/gadget/vw-golf-2-jetta-2-digifiz-sockets-for-the-harness-amp-926505-993709100}
+
 
 \subsection{Connecteur de service sur la carte}
 Le troisième connecteur sur la carte reproduit les connecteurs du tableau, avec des broches numérotées de droite à gauche sur les unités \ReplicaGenOneShort{} et \ReplicaNextShort{}.
