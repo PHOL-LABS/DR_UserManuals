@@ -49,6 +49,7 @@ M.S. & Self-assembly kit with a single connector. \\
 NEXT-GART & \ReplicaNextLong{}, 8000~RPM scale, two connectors, electronic speed sensor. \\
 NEXT-GARS & \ReplicaNextLong{}, 8000~RPM scale, single connector, electronic speed sensor. \\
 NEXT-MT & \ReplicaNextLong{} self-assembly kit with two connectors. \\
+REFIZ & ReFIZ motherboard for OEM Volkswagen Digifiz screen units; replaces the stock motherboard and remains compatible with the Digifiz Next architecture. \\
 NEXT-MS & \ReplicaNextLong{} self-assembly kit with a single connector. \\
 \end{tblr}}
 
@@ -237,6 +238,89 @@ factory fuse panel or adapter blocks.
 Pins marked with \textsuperscript{$\dagger$} leave the 28-pin shell through the auxiliary JST breakouts bundled with the
 Mk3 kit. They provide twisted pairs for the ambient and oil thermistors plus direct access to the \textsc{MFA} buttons and fuel
 consumption signal.
+
+\subsection{ReFIZ motherboard pinout}
+ReFIZ is a replacement motherboard for original Volkswagen Digifiz screen units. It follows the Digifiz Next architecture, so the web dashboard and all other configuration functions are the same as on \ReplicaNextShort{}. The stock OEM motherboard can be removed and replaced with ReFIZ. Colour modification is limited to four LED locations plus the indicator line. The fuel-consumption sensor is connected by default, brightness can also be controlled manually through an additional analog input, and vehicle signals are routed through the main device socket. An optional CE~2 connector is available as described for the other Digifiz Next harnesses.
+
+\noindent\textbf{W Connector -- L Side (WL)}
+
+{\scriptsize
+\begin{tblr}{
+    colspec={Q[l,1.5cm] Q[l,3.5cm] X[l]},
+    hlines,
+    row{1} = {font=\bfseries},
+}
+Pin & Function & Description \\
+WL7 & Speedometer input & Speedometer input from the sensor. \\
+WL6 & MFA reset & Resets the Multi-Function Display (MFA) trip computer values. \\
+WL5 & Clock -- minute setting & Minute adjustment input for the dashboard clock, 12~V level. \\
+WL4 & Terminal~31 (Ground) & Chassis ground connection. \\
+WL3 & Handbrake warning lamp & Activates parking brake warning indicator. \\
+WL2 & Left turn signal indicator & Controls left turn signal lamp in instrument cluster. \\
+WL1 & Rear window heater indicator & Indicates rear defroster operation. \\
+\end{tblr}}
+
+\noindent\textbf{W Connector -- K Side (WK)}
+
+{\scriptsize
+\begin{tblr}{
+    colspec={Q[l,1.5cm] Q[l,3.5cm] X[l]},
+    hlines,
+    row{1} = {font=\bfseries},
+}
+Pin & Function & Description \\
+WK7 & KL1 RPM signal & Signal from the coil distributor unit. \\
+WK6 & Clock -- hour setting & Hour adjustment input for the dashboard clock, 12~V level. \\
+WK5 & MFA mode & Switch input for changing MFA display modes. \\
+WK4 & Terminal~61 & Charging system signal from alternator (battery warning lamp). Generator excitation. \\
+WK3 & Right turn signal indicator & Controls right turn signal lamp in instrument cluster. \\
+WK2 & High beam indicator & Controls high beam warning lamp. \\
+WK1 & Rear fog light indicator & Indicates rear fog lights are switched on. \\
+\end{tblr}}
+
+\noindent\textbf{S Connector -- L Side (SL)}
+
+{\scriptsize
+\begin{tblr}{
+    colspec={Q[l,1.5cm] Q[l,3.5cm] X[l]},
+    hlines,
+    row{1} = {font=\bfseries},
+}
+Pin & Function & Description \\
+SL9 & Terminal~58 & Instrument illumination supply from light switch. \\
+SL8 & MFA Block switch & Input from the MFA block selection switch (column switch). \\
+SL7 & Terminal~15 & Ignition-switched +12~V supply. \\
+SL6 & Terminal~58b & Dashboard illumination dimmer input. \\
+SL5 & Oil pressure switch (1.8~bar) & High-pressure oil switch input. \\
+SL4 & N/C; not routed on PCB (non-Rabbit) & Unknown. \\
+SL3 & N/C; not routed on PCB (non-Rabbit) & Unknown. \\
+SL2 & Oil temperature sender & Sensor input for oil temperature gauge/MFA. \\
+SL1 & Fuel level sender & Fuel tank level sensor input. \\
+\end{tblr}}
+
+\noindent\textbf{S Connector -- K Side (SK)}
+
+{\scriptsize
+\begin{tblr}{
+    colspec={Q[l,1.5cm] Q[l,3.5cm] X[l]},
+    hlines,
+    row{1} = {font=\bfseries},
+}
+Pin & Function & Description \\
+SK9 & Terminal~58 & Lights indicator. \\
+SK8 & Coolant level sensor & Low coolant level signal. \\
+SK7 & Unknown +12~V signal input & Unknown; some sources identify it as the variable oil pressure sender output. \\
+SK6 & Not connected/unknown & Not routed on the PCB in the non-Rabbit version. \\
+SK5 & Terminal~31 (Ground) for MFA & MFA ground connection. Mandatory to avoid malfunction. \\
+SK4 & Terminal~30, permanent power & Permanent battery +12~V supply. \\
+SK3 & Oil pressure switch (0.3~bar) & Low-pressure oil warning switch input. \\
+SK2 & Coolant temperature sender & Engine coolant temperature sensor input. \\
+SK1 & Outside temperature sender & Ambient temperature sensor input used by MFA. \\
+\end{tblr}}
+
+The original connectors are difficult to source; a printable socket model is available at:
+\displayurl{https://cults3d.com/en/3d-model/gadget/vw-golf-2-jetta-2-digifiz-sockets-for-the-harness-amp-926505-993709100}
+
 
 \subsection{Printed-circuit-board service connector}
 The third connector on the circuit board mirrors the dashboard connectors, with pins numbered right-to-left on \ReplicaGenOneShort{} and \ReplicaNextShort{} units. It provides a service interface with the assignments listed in \autoref{tab:service-connector}.

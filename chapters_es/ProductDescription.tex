@@ -49,6 +49,7 @@ M.S. & Kit de autoensamblaje con un conector. \\
 NEXT-GART & \ReplicaNextLong{}, escala de 8000~RPM, dos conectores, sensor de velocidad electrónico. \\
 NEXT-GARS & \ReplicaNextLong{}, escala de 8000~RPM, un conector, sensor de velocidad electrónico. \\
 NEXT-MT & Kit de autoensamblaje \ReplicaNextLong{} con dos conectores. \\
+REFIZ & Placa base ReFIZ para unidades de pantalla Volkswagen Digifiz OEM; sustituye la placa base original y mantiene compatibilidad con la arquitectura Digifiz Next. \\
 NEXT-MS & Kit de autoensamblaje \ReplicaNextLong{} con un conector. \\
 \end{tblr}}
 
@@ -230,6 +231,89 @@ fusibles o a los adaptadores del vehículo (\autoref{tab:mk3-pinout-es}).
 Los conductores marcados con \textsuperscript{$\dagger$} salen del conector de 28 pines mediante los conectores JST auxiliares
 incluidos en el kit Mk3. Proporcionan pares trenzados para los termistores de aire exterior y aceite, además del acceso directo
 a los pulsadores de la \textsc{MFA} y a la señal de consumo.
+
+\subsection{Pinout de la placa base ReFIZ}
+ReFIZ es una placa base de sustitución para unidades de pantalla Volkswagen Digifiz originales. Sigue la arquitectura Digifiz Next, por lo que el panel web y todas las demás funciones de configuración son iguales que en \ReplicaNextShort{}. La placa base OEM puede retirarse y reemplazarse por ReFIZ. La modificación de color está limitada a cuatro posiciones de LED más la línea de indicadores. El sensor de consumo está conectado de serie, el brillo también puede controlarse manualmente mediante una entrada analógica adicional, y las señales del vehículo están en el conector principal del dispositivo. Hay disponible un conector CE~2 opcional, como se describe para los demás mazos Digifiz Next.
+
+\noindent\textbf{Conector W -- lado L (WL)}
+
+{\scriptsize
+\begin{tblr}{
+    colspec={Q[l,1.5cm] Q[l,3.5cm] X[l]},
+    hlines,
+    row{1} = {font=\bfseries},
+}
+Pin & Función & Descripción \\
+WL7 & Entrada del velocímetro & Entrada del velocímetro desde el sensor. \\
+WL6 & Reinicio MFA & Restablece los valores del ordenador de viaje MFA. \\
+WL5 & Reloj -- ajuste de minutos & Entrada de ajuste de minutos del reloj, nivel de 12~V. \\
+WL4 & Terminal~31 (masa) & Conexión a masa del chasis. \\
+WL3 & Testigo de freno de mano & Activa el testigo del freno de estacionamiento. \\
+WL2 & Intermitente izquierdo & Controla el testigo del intermitente izquierdo. \\
+WL1 & Luneta térmica trasera & Indica el funcionamiento del desempañador trasero. \\
+\end{tblr}}
+
+\noindent\textbf{Conector W -- lado K (WK)}
+
+{\scriptsize
+\begin{tblr}{
+    colspec={Q[l,1.5cm] Q[l,3.5cm] X[l]},
+    hlines,
+    row{1} = {font=\bfseries},
+}
+Pin & Función & Descripción \\
+WK7 & Señal RPM KL1 & Señal de bobina o distribuidor. \\
+WK6 & Reloj -- ajuste de horas & Entrada de ajuste de horas del reloj, nivel de 12~V. \\
+WK5 & Modo MFA & Entrada para cambiar los modos de pantalla MFA. \\
+WK4 & Terminal~61 & Señal de carga del alternador (testigo de batería) y excitación del generador. \\
+WK3 & Intermitente derecho & Controla el testigo del intermitente derecho. \\
+WK2 & Testigo de luz larga & Controla el testigo de luces largas. \\
+WK1 & Luz antiniebla trasera & Indica que las luces antiniebla traseras están encendidas. \\
+\end{tblr}}
+
+\noindent\textbf{Conector S -- lado L (SL)}
+
+{\scriptsize
+\begin{tblr}{
+    colspec={Q[l,1.5cm] Q[l,3.5cm] X[l]},
+    hlines,
+    row{1} = {font=\bfseries},
+}
+Pin & Función & Descripción \\
+SL9 & Terminal~58 & Alimentación de iluminación de instrumentos desde el interruptor de luces. \\
+SL8 & Selector de bloque MFA & Entrada del selector de bloque MFA (mando de columna). \\
+SL7 & Terminal~15 & Alimentación +12~V con contacto. \\
+SL6 & Terminal~58b & Entrada del regulador de iluminación del tablero. \\
+SL5 & Interruptor de presión de aceite (1,8~bar) & Entrada del interruptor de alta presión de aceite. \\
+SL4 & N/C; no va a la PCB (non-Rabbit) & Desconocido. \\
+SL3 & N/C; no va a la PCB (non-Rabbit) & Desconocido. \\
+SL2 & Sensor de temperatura de aceite & Entrada para indicador de temperatura de aceite/MFA. \\
+SL1 & Sensor de nivel de combustible & Entrada del sensor de nivel del depósito. \\
+\end{tblr}}
+
+\noindent\textbf{Conector S -- lado K (SK)}
+
+{\scriptsize
+\begin{tblr}{
+    colspec={Q[l,1.5cm] Q[l,3.5cm] X[l]},
+    hlines,
+    row{1} = {font=\bfseries},
+}
+Pin & Función & Descripción \\
+SK9 & Terminal~58 & Indicador de luces. \\
+SK8 & Sensor de nivel de refrigerante & Señal de bajo nivel de refrigerante. \\
+SK7 & Entrada desconocida de señal +12~V & Desconocida; algunas fuentes la identifican como salida variable del sensor de presión de aceite. \\
+SK6 & No conectado/desconocido & No va a la PCB en la versión non-Rabbit. \\
+SK5 & Terminal~31 (masa) para MFA & Masa de MFA; obligatoria para evitar fallos. \\
+SK4 & Terminal~30, alimentación permanente & Alimentación permanente de batería +12~V. \\
+SK3 & Interruptor de presión de aceite (0,3~bar) & Entrada de aviso de baja presión de aceite. \\
+SK2 & Sensor de temperatura de refrigerante & Entrada del sensor de temperatura del refrigerante del motor. \\
+SK1 & Sensor de temperatura exterior & Sensor de temperatura ambiente usado por MFA. \\
+\end{tblr}}
+
+Los conectores originales son difíciles de conseguir; hay un modelo imprimible del zócalo en:
+\displayurl{https://cults3d.com/en/3d-model/gadget/vw-golf-2-jetta-2-digifiz-sockets-for-the-harness-amp-926505-993709100}
+
 
 \subsection{Conector de servicio de la placa de circuito impreso}
 El tercer conector de la placa replica los conectores del cuadro, con pines numerados de derecha a izquierda en las unidades \ReplicaGenOneShort{} y \ReplicaNextShort{}. Proporciona una interfaz de servicio con las asignaciones listadas en \autoref{tab:service-connector}.

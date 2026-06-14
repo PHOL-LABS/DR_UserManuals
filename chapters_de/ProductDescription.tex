@@ -49,6 +49,7 @@ M.S. & Selbstbausatz mit Einzelstecker. \\
 NEXT-GART & \ReplicaNextLong{}, 8000-U/min-Skala, zwei Stecker, elektronischer Geschwindigkeitssensor. \\
 NEXT-GARS & \ReplicaNextLong{}, 8000-U/min-Skala, Einzelstecker, elektronischer Geschwindigkeitssensor. \\
 NEXT-MT & \ReplicaNextLong{}-Selbstbausatz mit zwei Steckern. \\
+REFIZ & ReFIZ-Hauptplatine für originale Volkswagen-Digifiz-Anzeigeeinheiten; ersetzt die Serien-Hauptplatine und bleibt mit der Digifiz-Next-Architektur kompatibel. \\
 NEXT-MS & \ReplicaNextLong{}-Selbstbausatz mit Einzelstecker. \\
 \end{tblr}}
 
@@ -234,6 +235,89 @@ Adapter angeschlossen werden kann (siehe \autoref{tab:mk3-pinout-de}).
 Mit \textsuperscript{$\dagger$} markierte Leitungen verlassen den 28-poligen Stecker über die mitgelieferten JST-Abgriffe. Sie
 führen verdrillte Paare für die Außen- und Öltemperatursensoren sowie direkte Anschlüsse an die \textsc{MFA}-Tasten und das
 Verbrauchssignal.
+
+\subsection{Pinbelegung der ReFIZ-Hauptplatine}
+ReFIZ ist eine Ersatz-Hauptplatine für originale Volkswagen-Digifiz-Anzeigeeinheiten. Sie folgt der Digifiz-Next-Architektur; daher sind Web-Dashboard und alle übrigen Konfigurationsfunktionen identisch mit \ReplicaNextShort{}. Die originale Hauptplatine kann ausgebaut und durch ReFIZ ersetzt werden. Die Farbänderung ist auf vier LED-Positionen plus die Anzeigeleiste beschränkt. Der Verbrauchssensor ist standardmäßig angeschlossen, die Helligkeit kann zusätzlich über einen weiteren Analogeingang manuell gesteuert werden, und die Fahrzeugsignale liegen am Hauptgerätestecker an. Ein optionaler CE~2-Steckverbinder ist wie bei den anderen Digifiz-Next-Kabelbäumen verfügbar.
+
+\noindent\textbf{W-Steckverbinder -- L-Seite (WL)}
+
+{\scriptsize
+\begin{tblr}{
+    colspec={Q[l,1.5cm] Q[l,3.5cm] X[l]},
+    hlines,
+    row{1} = {font=\bfseries},
+}
+Pin & Funktion & Beschreibung \\
+WL7 & Tachometereingang & Tachometersignal vom Sensor. \\
+WL6 & MFA-Reset & Setzt die Werte des MFA-Bordrechners zurück. \\
+WL5 & Uhr -- Minuteneinstellung & Minuteneingang der Uhr, 12~V-Pegel. \\
+WL4 & Klemme~31 (Masse) & Karosseriemasse. \\
+WL3 & Handbrems-Warnleuchte & Aktiviert die Parkbrems-Warnanzeige. \\
+WL2 & Blinker links & Steuert die linke Blinker-Kontrolllampe. \\
+WL1 & Heckscheibenheizung & Zeigt den Betrieb der Heckscheibenheizung an. \\
+\end{tblr}}
+
+\noindent\textbf{W-Steckverbinder -- K-Seite (WK)}
+
+{\scriptsize
+\begin{tblr}{
+    colspec={Q[l,1.5cm] Q[l,3.5cm] X[l]},
+    hlines,
+    row{1} = {font=\bfseries},
+}
+Pin & Funktion & Beschreibung \\
+WK7 & KL1-Drehzahlsignal & Signal von Zündspule oder Verteiler. \\
+WK6 & Uhr -- Stundeneinstellung & Stundeneingang der Uhr, 12~V-Pegel. \\
+WK5 & MFA-Modus & Schalteingang zum Wechseln der MFA-Anzeigen. \\
+WK4 & Klemme~61 & Ladesystemsignal der Lichtmaschine (Batteriewarnlampe) und Generatorerregung. \\
+WK3 & Blinker rechts & Steuert die rechte Blinker-Kontrolllampe. \\
+WK2 & Fernlichtanzeige & Steuert die Fernlicht-Kontrolllampe. \\
+WK1 & Nebelschlussleuchte & Zeigt eingeschaltete Nebelschlussleuchten an. \\
+\end{tblr}}
+
+\noindent\textbf{S-Steckverbinder -- L-Seite (SL)}
+
+{\scriptsize
+\begin{tblr}{
+    colspec={Q[l,1.5cm] Q[l,3.5cm] X[l]},
+    hlines,
+    row{1} = {font=\bfseries},
+}
+Pin & Funktion & Beschreibung \\
+SL9 & Klemme~58 & Instrumentenbeleuchtung vom Lichtschalter. \\
+SL8 & MFA-Blockschalter & Eingang vom MFA-Blockwahlschalter (Lenkstockschalter). \\
+SL7 & Klemme~15 & Zündungsplus +12~V. \\
+SL6 & Klemme~58b & Dimmer-Eingang der Instrumentenbeleuchtung. \\
+SL5 & Öldruckschalter (1,8~bar) & Eingang des Hochdruck-Ölschalters. \\
+SL4 & N/C; auf der Platine nicht geführt (non-Rabbit) & Unbekannt. \\
+SL3 & N/C; auf der Platine nicht geführt (non-Rabbit) & Unbekannt. \\
+SL2 & Öltemperaturgeber & Sensoreingang für Öltemperaturanzeige/MFA. \\
+SL1 & Kraftstoffstandgeber & Eingang des Tankfüllstandgebers. \\
+\end{tblr}}
+
+\noindent\textbf{S-Steckverbinder -- K-Seite (SK)}
+
+{\scriptsize
+\begin{tblr}{
+    colspec={Q[l,1.5cm] Q[l,3.5cm] X[l]},
+    hlines,
+    row{1} = {font=\bfseries},
+}
+Pin & Funktion & Beschreibung \\
+SK9 & Klemme~58 & Lichtanzeige. \\
+SK8 & Kühlmittelstandsensor & Signal für niedrigen Kühlmittelstand. \\
+SK7 & Unbekannter +12~V-Signaleingang & Unbekannt; einige Quellen nennen ihn Ausgang des variablen Öldruckgebers. \\
+SK6 & Nicht verbunden/unbekannt & Bei der non-Rabbit-Version nicht auf der Platine geführt. \\
+SK5 & Klemme~31 (Masse) für MFA & MFA-Masseanschluss; zur Vermeidung von Fehlfunktionen erforderlich. \\
+SK4 & Klemme~30, Dauerplus & Permanente Batterieversorgung +12~V. \\
+SK3 & Öldruckschalter (0,3~bar) & Eingang der Niederdruck-Ölwarnung. \\
+SK2 & Kühlmitteltemperaturgeber & Eingang des Motorkühlmittel-Temperatursensors. \\
+SK1 & Außentemperaturgeber & Von der MFA genutzter Umgebungstemperatursensor. \\
+\end{tblr}}
+
+Die Originalsteckverbinder sind schwer zu beschaffen; ein druckbares Buchsenmodell ist erhältlich unter:
+\displayurl{https://cults3d.com/en/3d-model/gadget/vw-golf-2-jetta-2-digifiz-sockets-for-the-harness-amp-926505-993709100}
+
 
 \subsection{Service-Steckverbinder auf der Leiterplatte}
 Der dritte Steckverbinder auf der Leiterplatte spiegelt die Armaturenstecker wider; die Pins sind bei \ReplicaGenOneShort{}- und \ReplicaNextShort{}-Geräten von rechts nach links nummeriert. Er dient als Service-Schnittstelle mit den in \autoref{tab:service-connector} aufgeführten Belegungen.
