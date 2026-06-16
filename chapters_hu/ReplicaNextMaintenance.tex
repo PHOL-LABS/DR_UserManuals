@@ -168,7 +168,7 @@ A \emph{Settings} lap a \autoref{tbl:next-commands} és \autoref{tbl:next-defaul
 A színmunkafolyamat megköveteli, hogy a \emph{Colors} lap használata előtt engedélyezze az egyedi palettákért felelős firmware flaget. Keresse meg a „Custom colour scheme” nevű logikai bejegyzést a webes vezérlőpult \emph{Settings} lapján, pipálja ki, majd nyomja meg a \emph{Set} gombot. A műszer nem fogadja el a szegmensenkénti módosításokat, amíg ez a jelölés nincs aktiválva.
 
 \section{Egyedi színsémák}
-A \emph{Colors} lap szegmensalapú szerkesztőt kínál a WS2812 LED háttérvilágításhoz. Minden sor egy tartománylezárást, a hozzárendelt funkcionális területet és a színt vagy az alap színöröklést írja le.
+A \emph{Colors} lap szegmensalapú szerkesztőt kínál a WS2812 LED háttérvilágításhoz. Minden sor egy tartománylezárást, a hozzárendelt funkcionális területet és az adott tartományhoz használt színtípust írja le. A színtípus-választóban a \emph{Main color} a \emph{Control} lapon aktuálisan beállított RGB értéket használja, a \emph{Main color /3} ugyanezt a főszínt egyharmad intenzitással (háromszor sötétebben), a \emph{Custom color} az ezen a \emph{Colors} lapon kiválasztott RGB értéket, a \emph{Back color} pedig a \emph{Control} lap háttérvilágítási színét.
 
 \begin{enumerate}
     \item Nyomja meg a \emph{Load Scheme} gombot az aktuális leképezés beolvasásához. Használja az \emph{Add Segment} gombot, illetve a beépített „+\textuparrow{}” és „+\textdownarrow{}” vezérlőket új tartományok beszúrásához. A legördülő listák a műszer funkcióját választják ki, az alapszín-választó pedig engedi az alap- vagy háttérszínek újrafelhasználását fix RGB érték helyett.

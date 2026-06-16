@@ -170,7 +170,7 @@ The colour workflow requires that you enable the firmware flag responsible for c
 Locate the boolean entry labelled ``Custom colour scheme'' in the web dashboard's \emph{Settings} tab, tick the checkbox, and press \emph{Set}. The dashboard will reject bespoke segment edits until this flag is turned on.
 
 \section{Custom colour schemes}
-The \emph{Colors} tab introduces a segment-based editor for the WS2812 LED backlight. Each row describes a range end point, the functional area it corresponds to, and the colour or base colour inheritance.
+The \emph{Colors} tab introduces a segment-based editor for the WS2812 LED backlight. Each row describes a range end point, the functional area it corresponds to, and the colour type used for that range. In the colour type selector, \emph{Main color} uses the RGB value currently set on the \emph{Control} tab, \emph{Main color /3} uses the same main colour at one third of its intensity (three times darker), \emph{Custom color} uses the RGB value selected directly on this \emph{Colors} tab, and \emph{Back color} uses the backlight colour from the \emph{Control} tab.
 
 \begin{enumerate}
     \item Press \emph{Load Scheme} to read the active mapping. Use \emph{Add Segment}, or the inline ``+\textuparrow{}'' and ``+\textdownarrow{}'' controls, to insert new ranges. The drop-down menus select the instrument function, and the base-colour selector lets you reuse the main or back colours instead of specifying a fixed RGB value.
