@@ -1,0 +1,139 @@
+% Canonical firmware table shared by every language edition.  UI strings are
+% intentionally kept exactly as displayed by the firmware.
+\begin{longtblr}[
+  caption={\ParameterCatalogueCaption}, label={\ParameterCatalogueLabel},
+]{
+  colspec={Q[l,0.21\linewidth,cmd=\seqsplit,font=\ttfamily] Q[l,0.18\linewidth]
+           Q[l,0.31\linewidth] Q[c,0.13\linewidth] Q[l,0.15\linewidth]},
+  rowhead=1, rowsep=1.5pt,
+}
+\toprule
+\SetCell{cmd=\relax}\textbf{\ParameterIdentifier} & \textbf{\ParameterUILabel} &
+\textbf{\ParameterDescription} & \textbf{\ParameterValue} & \textbf{\ParameterLimits} \\
+\midrule
+option\_mfa\_manufacturer & MFA Option Enable & Enable MFA steering columns switch & U8 / 1 & 0--1 \\
+option\_miles & Miles option & Enable Miles option & U8 / 0 & 0--1 \\
+option\_gallons & Gallons option & Enable Gallons option & U8 / 0 & 0--1 \\
+option\_fahrenheit & Fahreheit option & Enable Fahrenheit degress option & U8 / 0 & 0--1 \\
+option\_kelvin & Kelvin option & Enable Kelvin degrees option & U8 / 0 & 0--1 \\
+option\_lbar & -- & Reserved firmware option & U8 / 0 & 0--1 \\
+option\_linear\_fuel & Linear fuel calculation & Calculate the fuel level by simple linear formula & U8 / 0 & 0--1 \\
+option\_testmode\_on & Test mode & Enable testmode & U8 / 0 & 0--1 \\
+option\_invert\_oil03\_input & Invert 0.3 bar input & Invert the 0.3 bar oil pressure input (1 is treated as 0 and 0 as 1) & U8 / 0 & 0--1 \\
+rpmOptions\_redline\_segments & Redline segments & Redline segments number & U8 / 8 & 0--31 \\
+rpmOptions\_diesel\_line & Diesel option & Diesel-style RPM gauge & U8 / 0 & 0--1 \\
+rpmOptions\_7k\_line & 7k option & 7k-style RPM gauge & U8 / 0 & 0--1 \\
+tempOptions\_red\_segments & Red segments count & Temperature red segments count & U8 / 0 & 0--3 \\
+tempOptions\_sensor\_connected\_ind & Indicate temp. sensor & Display that sensor is connected by indicating 1 segment & U8 / 0 & 0--1 \\
+tempOptions\_oil\_atten & Lower atten. enable & Enable lower attenuator for Oil channel & U8 / 0 & 0--1 \\
+tempOptions\_alarm\_function & Temp. alarm function & Blink the temperature gauge if alarm & U8 / 0 & 0--1 \\
+checkEngineAction & Check engine action & 0 = no action; 1 = blink temperature indicator (1 s); 2 = blink speedometer red (1 s) & U8 / 0 & 0--2 \\
+signalOptions\_use\_blink\_alt\_in & Other blink & Use alternative separate blinker inputs & U8 / 0 & 0--1 \\
+signalOptions\_enable\_firmware\_blinkers & Firmware blinkers & Blink turn indicators in firmware (0.5 s period) & U8 / 0 & 0--1 \\
+signalOptions\_enable\_touch\_sensor & Touch sensor option & Enable wireless touch sensor & U8 / 0 & 0--1 \\
+signalOptions\_invert\_light\_input & Invert light signal input & Invert behaviour of brightness adjustment & U8 / 0 & 0--1 \\
+signalOptions\_enable\_consumption\_sensor & Consumption sensor option & Enable external consumption MAF sensor & U8 / 0 & 0--1 \\
+signalOptions\_indicator\_filter\_cycles & Indicator filter cycles & Cycles required to confirm general indicator changes & U16 / 0 & 0--65535 \\
+signalOptions\_turn\_filter\_cycles & Turn signal filter cycles & Cycles required to confirm turn indicator changes & U16 / 0 & 0--65535 \\
+rpmQuadraticCoefficient & RPM Quadratic coefficient & Quadratic term coefficient for RPM calibration (divide by 100000) & U16 / 0 & 0--65535 \\
+rpmCoefficient & RPM Coefficient & Coefficient for RPM calibration & U16 / 1500 & 0--65535 \\
+speedCoefficient & Speed coefficient & Coefficient for speed calibration & U16 / 100 & 0--65535 \\
+coolantThermistorB & Coolant thermistor beta & Beta-coefficient for coolant temperature equation & U16 / build value & Firmware constant \\
+oilThermistorB & Oil thermistor beta & Beta-coefficient for oil temperature equation & U16 / build value & Firmware constant \\
+airThermistorB & Air thermistor beta & Beta-coefficient for outdoor temperature equation & U16 / build value & Firmware constant \\
+tankMinResistance & Fuel tank min. resistance & Minimum resistance of fuel sensor & U16 / 35 & Ohms \\
+tankMaxResistance & Fuel tank max. resistance & Maximum resistance of fuel sensor & U16 / 265 & Ohms \\
+tauCoolant & Coolant LPF coeff. & Filter coefficient for coolant temperature & U16 / 2 & 0--65535 \\
+tauOil & Oil LPF coeff. & Filter coefficient for oil temperature & U16 / 2 & 0--65535 \\
+tauAir & Air LPF coeff. & Filter coefficient for outdoor temperature & U16 / 2 & 0--65535 \\
+tauTank & Tank LPF coeff. & Filter coefficient for fuel level & U16 / 2 & 0--65535 \\
+maxRPM & Maximum RPM & Maximum RPM (8000, 7000, or 6000) & U16 / 8000 & Listed values \\
+coolantMin & Min. coolant temp. & Minimum coolant temperature (1 segment) & U16 / 60 & Degrees \\
+coolantMax & Max. coolant temp. & Maximum coolant temperature (maximum segments) & U16 / 120 & Degrees \\
+medianDispFilterThreshold & N/a & Not used & U16 / 65535 & Reserved \\
+autoBrightness & Auto brightness & Enable auto brightness calculation & U8 / 1 & 0--255 \\
+brightnessLevel & Brightness level & Manual brightness level & U8 / 25 & 0--70 \\
+brightnessSignalMin & Light signal min & ADC value for minimum brightness & U16 / 300 & ADC value \\
+brightnessSignalMax & Light signal max & ADC value for maximum brightness & U16 / 800 & ADC value \\
+brightnessMin & Brightness min & Minimum auto brightness level & U8 / 6 & 0--255 \\
+brightnessMax & Brightness max & Maximum auto brightness level & U8 / 25 & 0--255 \\
+brightnessSpeed & Brightness speed & Regulation speed (percent) & U8 / 10 & 0--100 \\
+tankCapacity & Fuel tank capacity & Fuel tank capacity in liters & U8 / 63 & Litres \\
+fuel\_low\_threshold\_liters & Low fuel threshold (L) & Fuel level in liters that triggers refuel indicator & U8 / 10 & Litres \\
+fuel\_critical\_threshold\_liters & Critical fuel threshold (L) & Fuel level in liters that triggers refuel blinking & U8 / 5 & Litres \\
+fuel\_low\_threshold\_gallons & Low fuel threshold (gal) & Fuel level in gallons that triggers refuel indicator & U8 / 3 & Gallons \\
+fuel\_critical\_threshold\_gallons & Critical fuel threshold (gal) & Fuel level in gallons that triggers refuel blinking & U8 / 2 & Gallons \\
+mfa\_sensor & MFA sensor type & 0 = consumption; 1 = barometer; 2 = wideband lambda; 3 = fuel pressure & U8 / 0 & 0--5 \\
+mfa\_clock\_sensor & MFA clock sensor type & 0 = clock; 1 = barometer; 2 = wideband lambda; 3 = fuel pressure & U8 / 0 & 0--5 \\
+Vblow & Barometer V low & Low voltage calibration point for barometer & float / 0.25 & 0.0--3.3 V \\
+Vbhigh & Barometer V high & High voltage calibration point for barometer & float / 2.25 & 0.0--3.3 V \\
+Blow & Barometer low & Pressure at low voltage point & float / 0.0 & $-20.0$--20.0 \\
+Bhigh & Barometer high & Pressure at high voltage point & float / 8.0 & $-20.0$--20.0 \\
+Vfplow & Fuel pressure V low & Low voltage calibration point for fuel pressure & float / 0.0 & 0.0--3.3 V \\
+Vfphigh & Fuel pressure V high & High voltage calibration point for fuel pressure & float / 3.3 & 0.0--3.3 V \\
+FPlow & Fuel pressure low & Pressure at low voltage point & float / 0.0 & $-20.0$--20.0 \\
+FPhigh & Fuel pressure high & Pressure at high voltage point & float / 10.0 & $-20.0$--20.0 \\
+Viplow & Intake pressure V low & Low voltage calibration point for intake pressure & float / 0.0 & 0.0--3.3 V \\
+Viphigh & Intake pressure V high & High voltage calibration point for intake pressure & float / 3.3 & 0.0--3.3 V \\
+IPlow & Intake pressure low & Pressure at low voltage point & float / 84749.0 & $-20000$--250000 \\
+IPhigh & Intake pressure high & Pressure at high voltage point & float / 18247.4 & $-20000$--250000 \\
+Vllow & Lambda V low & Low voltage calibration point for wideband lambda & float / 0.0 & 0.0--3.3 V \\
+Vlhigh & Lambda V high & High voltage calibration point for wideband lambda & float / 4.5 & 0.0--5.0 V \\
+AFRlow & Lambda AFR low & AFR at low voltage point & float / 10.0 & 0.0--40.0 \\
+AFRhigh & Lambda AFR high & AFR at high voltage point & float / 20.0 & 0.0--40.0 \\
+mfaState & MFA function state & Selected MFA function & U8 / -- & Runtime value \\
+buzzerOff & Buzzer option & Enable or disable embedded buzzer & U8 / 1 & 0--255 \\
+mfaBlock & MFA Block ind. & Selected MFA memory block & U8 / -- & Runtime value \\
+displayDot & Blinking dot & Display blinking dot & U8 / -- & Runtime value \\
+backlight\_on & Bkclt power & Enable backlight power & U8 / 1 & 0--255 \\
+speedColorChangeEnable & Speed color alert & Enable speed color change above threshold & U8 / 0 & 0--1 \\
+speedColorChangeThreshold & Speed alert threshold & Speed value that enables alert color & U16 / 120 & 0--400 \\
+speedAlertColor\_r & Speed alert R & Speed alert color red component & U8 / 255 & 0--255 \\
+speedAlertColor\_g & Speed alert G & Speed alert color green component & U8 / 0 & 0--255 \\
+speedAlertColor\_b & Speed alert B & Speed alert color blue component & U8 / 0 & 0--255 \\
+mainc\_r & Main R color & Main theme red color component & U8 / 180 & 0--255 \\
+mainc\_g & Main G color & Main theme green color component & U8 / 240 & 0--255 \\
+mainc\_b & Main B color & Main theme blue color component & U8 / 6 & 0--255 \\
+backc\_r & Back R color & Main theme backlight red color component & U8 / 180 & 0--255 \\
+backc\_g & Back G color & Main theme backlight green color component & U8 / 240 & 0--255 \\
+backc\_b & Back B color & Main theme backlight blue color component & U8 / 6 & 0--255 \\
+ledEffect\_type & LED effect & LED effect type & U8 / 0 & 0--255 \\
+ledEffect\_hue & Effect hue & Base hue value & U8 / 0 & 0--255 \\
+ledEffect\_saturation & Effect saturation & Base saturation & U8 / 255 & 0--255 \\
+ledEffect\_value & Effect value & Base brightness & U8 / 30 & 0--255 \\
+coolantThermistorDefRes & Coolant default resistance & Default coolant sensor resistance at 25 degrees C & U16 / build value & Ohms \\
+oilThermistorDefRes & Oil default resistance & Default oil temperature sensor resistance at 25 degrees C & U16 / build value & Ohms \\
+ambThermistorDefRes & Air default resistance & Default outdoor temperature sensor resistance at 25 degrees C & U16 / build value & Ohms \\
+rpmFilterK & RPM LPF coeff. & LPF coefficient for RPM calculation & U16 / 70 & 0--65535 \\
+rpmFallingFilterK & RPM LPF coeff. fall & LPF coefficient used when RPM decreases & U16 / 200 & 0--65535 \\
+speedFilterK & LPF coefficient for speed calculation & LPF coefficient for speed calculation & U16 / -- & Build-dependent \\
+speedDisplayUpdateDivider & Speed display update divider & Number of 32 Hz main-loop cycles between displayed speed updates & U16 / 16 & 1--320 \\
+coolantThermistorPullUpRes & Coolant pull-up & Pull-up resistance for coolant temperature sensor & U16 / 220 & Ohms \\
+oilThermistorPullUpRes & Oil pull-up & Pull-up resistance for oil temperature sensor & U16 / 220 & Ohms \\
+oilThermistorSeriesRes & Oil series & Series resistance between oil sensor and ground & U16 / 0 & Ohms \\
+ambThermistorPullUpRes & Amb. air pull-up & Pull-up resistance for ambient temperature sensor & U16 / 3300 & Ohms \\
+useCustomScheme & Custom scheme & Enable custom display scheme & U8 / 0 & 0--1 \\
+wifi\_auto\_off & WiFi Auto Off & Turn off WiFi after 1 minute of ignition ON & U8 / 0 & 0--1 \\
+rpm\_algorithm & RPM algorithm & 0 = legacy/unstable; 1 = stable input; 2 = glitch-filtered input & U8 / 0 & 0--2 \\
+rpm\_sanity\_check & RPM sanity check & Maximum valid RPM value used as sanity threshold & U16 / 3000 & 0--65535 \\
+rpm\_debounce\_ticks & RPM debounce ticks & Debounce threshold in timer ticks for RPM edge filtering & U16 / 50 & Timer ticks \\
+rpm\_min\_low\_us & RPM min low us & Minimum low pulse width for glitch-filtered RPM input & U16 / 100 & Microseconds \\
+rpm\_min\_high\_us & RPM min high us & Minimum high pulse width for glitch-filtered RPM input & U16 / 100 & Microseconds \\
+r\_gear\_coefficient & Rear gear coefficient & Proportion between speed and gear & U32 / 9999999 & Default: N/A \\
+gear1\_coefficient & 1-st gear coefficient & Proportion between speed and gear & U32 / 1000 & Default: 020 \\
+gear2\_coefficient & 2-nd gear coefficient & Proportion between speed and gear & U32 / 2000 & Default: 020 \\
+gear3\_coefficient & 3-rd gear coefficient & Proportion between speed and gear & U32 / 3000 & Default: 020 \\
+gear4\_coefficient & 4-th gear coefficient & Proportion between speed and gear & U32 / 4000 & Default: 020 \\
+gear5\_coefficient & 5-th gear coefficient & Proportion between speed and gear & U32 / 5000 & Default: 020 \\
+gear6\_coefficient & 6-th gear coefficient & Proportion between speed and gear & U32 / 10000 & Default: no gear \\
+speed\_rpm\_mode & Speed source mode & 0 = speed input; 1 = RPM with 3-rd gear coefficient; 2 = dynamic RPM/gear coefficients & U8 / 0 & 0--2; reboot \\
+option\_gear\_change\_indicator & Gear change indicator & Blink gear on speedometer when gear changes & U8 / 0 & 0--1 \\
+option\_gear\_indicator\_in\_refuel & Gear indicator in refuel & Show gear indicator in refuel segment instead of speed display & U8 / 0 & 0--1 \\
+option\_refuel\_blink & Blink refuel indicator & Blink refuel (R) indicator when fuel is low & U8 / 0 & 0--1 \\
+speed\_meas\_period & Speedometer measurement period in ms & Measurement period for PCNT & U32 / 1000 & 250--2000; reboot \\
+speed\_meas\_window & Speedometer measurement window in ms & Measurement window for PCNT & U32 / 1000 & 250--2000; reboot \\
+stable\_speed\_input & Stable Speed input & Enable for electronic speed signal & U8 / 0 & 0--1 \\
+filtered\_speed\_input & Filtered Speed input & Enable speed signal filtering (disable stable input) & U8 / 1 & 0--1 \\
+speed\_min\_threshold\_value & Minimum speed threshold & Minimum speed shown as non-zero & U16 / 5 & 0--400 \\
+\bottomrule
+\end{longtblr}

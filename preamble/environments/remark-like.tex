@@ -47,7 +47,12 @@
 }
 
 %% Make proof environment remark-like without numbering
+%% An environment consists of both \proof and \endproof.  Recent LaTeX
+%% releases check both commands when keytheorems declares the replacement, so
+%% clearing only \proof leaves the original amsthm end command behind and makes
+%% \declarekeytheorem fail with "End of environment 'proof' already defined".
 \let\proof\relax
+\let\endproof\relax
 \NewRemarkLike[numbered=no, qed=\proofqed]{proof}
 \NewRemarkLike[numbered=no, name={Idea of the Proof}, qed=\proofqed]{proofidea}
 
